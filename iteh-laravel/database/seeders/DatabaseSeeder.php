@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Reziser;
+use App\Models\Serija;
+use App\Models\User;
+use App\Models\Zanr;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +17,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // Serija::truncate();
+        // User::truncate();
+        // Reziser::truncate();
+        // Zanr::truncate();
+        $rseeder = new ReziserSeeder();
+        $sseeder = new SerijaSeeder();
+        $zseeder = new ZanrSeeder();
+
+        $rseeder->run();
+        $sseeder->run();
+        $zseeder->run();
     }
 }
