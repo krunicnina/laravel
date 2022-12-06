@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SerijaCollection;
-use App\Models\Serija;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class SerijaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,8 @@ class SerijaController extends Controller
      */
     public function index()
     {
-        $serijas = Serija::all();
-    
-        return new SerijaCollection($serijas);
+        $users=User::all();
+        return $users;
     }
 
     /**
@@ -44,21 +42,24 @@ class SerijaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Serija $serija)
+    public function show($user_id)
     {
-        //
+        $user = User::find($user_id);
+        if (is_null($user))
+            return response()->json('Data not found', 404);
+        return response()->json($user);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Serija $serija)
+    public function edit(User $user)
     {
         //
     }
@@ -67,10 +68,10 @@ class SerijaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Serija $serija)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -78,15 +79,11 @@ class SerijaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Serija $serija)
+    public function destroy(User $user)
     {
-        
-            $serija->delete();
-    
-            return response()->json(['message' => 'Serija obrisana', 'id' => $serija->id]);
-        }
-   
+        //
+    }
 }

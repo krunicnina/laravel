@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +60,11 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Hello ' . $user->name, 'token' => $token]);
     }
-
-
+    public function logout(Request $request){
+        // $request->user()->currentAccessToken()->delete();
+        request()->user()->tokens()->delete();
+        return response()->json('Goodbye '.'.You successfully logged out!');
+    }
+   
+ 
 }

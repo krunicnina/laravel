@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SerijaCollection;
-use App\Models\Serija;
+use App\Models\Zanr;
 use Illuminate\Http\Request;
 
-class SerijaController extends Controller
+class ZanrController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class SerijaController extends Controller
      */
     public function index()
     {
-        $serijas = Serija::all();
-    
-        return new SerijaCollection($serijas);
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class SerijaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\Zanr  $zanr
      * @return \Illuminate\Http\Response
      */
-    public function show(Serija $serija)
+    public function show(Zanr $zanr)
     {
         //
     }
@@ -55,10 +52,10 @@ class SerijaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\Zanr  $zanr
      * @return \Illuminate\Http\Response
      */
-    public function edit(Serija $serija)
+    public function edit(Zanr $zanr)
     {
         //
     }
@@ -67,10 +64,10 @@ class SerijaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\Zanr  $zanr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Serija $serija)
+    public function update(Request $request, Zanr $zanr)
     {
         //
     }
@@ -78,15 +75,11 @@ class SerijaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Serija  $serija
+     * @param  \App\Models\Zanr  $zanr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Serija $serija)
+    public function destroy(Zanr $zanr)
     {
-        
-            $serija->delete();
-    
-            return response()->json(['message' => 'Serija obrisana', 'id' => $serija->id]);
-        }
-   
+        //
+    }
 }
