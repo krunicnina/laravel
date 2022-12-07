@@ -15,5 +15,6 @@ class ZanrResource extends JsonResource
     public function toArray($request)
     {
        return [ 'naziv_zanra: ' => $this->resource->naziv_zanra ];
+    //  return parent::toArray($request);
     }
 }

@@ -14,11 +14,12 @@ class ReziserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'Ime: ' => $this->resource->ime,
-            'Prezime: ' => $this->resource->prezime,
-            'drzava: ' => $this->resource->drzava,
-            'jmbg: ' => $this->esource->jmbg,
-        ];
+        // return [
+        //     'Ime: ' => $this->resource->ime,
+        //     'Prezime: ' => $this->resource->prezime,
+        //     'jmbg: ' => $this->esource->jmbg,
+        //     'drzava: ' => $this->resource->drzava,
+        // ];
+        return parent::toArray($request);
     }
 }

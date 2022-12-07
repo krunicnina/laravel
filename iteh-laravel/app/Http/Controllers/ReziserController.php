@@ -48,7 +48,7 @@ class ReziserController extends Controller
      */
     public function show(Reziser $reziser)
     {
-        //
+        return new ReziserResource($reziser);
     }
 
     /**

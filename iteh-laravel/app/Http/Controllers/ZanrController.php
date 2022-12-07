@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ZanrResource;
 use App\Models\Zanr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ZanrController extends Controller
 {
@@ -14,7 +16,8 @@ class ZanrController extends Controller
      */
     public function index()
     {
-        //
+        $sviZanrovi = Zanr::all();
+        return ZanrResource::collection($sviZanrovi);
     }
 
     /**
@@ -35,7 +38,21 @@ class ZanrController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'naziv_zanra' => 'required|string',
+           
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Greska u zahtevu!', $validator->errors()]);
+        }
+
+        $zanr = Zanr::create([
+            'naziv_zanra' => $request->naziv_zanra,
+           
+        ]);
+
+        return response()->json(['Novi zanr ubačen u bazu!.', new ZanrResource($zanr)]);
     }
 
     /**
@@ -80,6 +97,7 @@ class ZanrController extends Controller
      */
     public function destroy(Zanr $zanr)
     {
-        //
+        $zanr->delete();
+        return response()->json('Obrisan je željeni zanr!');
     }
 }
