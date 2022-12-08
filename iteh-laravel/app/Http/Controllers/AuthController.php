@@ -60,11 +60,16 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Hello ' . $user->name, 'token' => $token]);
     }
-    public function logout(Request $request){
-        // $request->user()->currentAccessToken()->delete();
-        request()->user()->tokens()->delete();
-        return response()->json('Goodbye '.'.You successfully logged out!');
+  
+    public function logout()
+    {
+        //the comment below just to ignore intelephense(1013) annoying error.
+        /** @var \App\Models\User $user **/
+        $user = Auth::user();
+        $user->tokens()->delete();
+    
+        return [
+            'message' => 'logged out'
+        ];
     }
-   
- 
 }

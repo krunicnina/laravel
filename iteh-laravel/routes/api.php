@@ -20,15 +20,23 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-Route::get('/users/{id}', [UserController::class, 'show'])->name('show');
-Route::get('serijas/reziser/{id}',[SerijaController::class,'getByReziser']);
-Route::get('serijas/zanr/{id}',[SerijaController::class,'getByZanr']);
+// Route::get('/users/{id}', [UserController::class, 'show'])->name('show');
+ Route::get('serijas/reziser/{id}',[SerijaController::class,'getByReziser']);
+ Route::get('serijas/zanr/{id}',[SerijaController::class,'getByZanr']);
+
+
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::resource('reziser', ReziserController::class);
-    Route::resource('zanr', ZanrController::class);
-  
-
+    // Route::resource('reziser', ReziserController::class);
+    //  Route::resource('zanr', ZanrController::class);
+     Route::post('logout', [AuthController::class, 'logout']);
    
-  
+ });
 
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
+
+// crud apiresource
+//Route::apiResource('serijas',SerijaController::class);
