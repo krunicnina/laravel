@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ReziserResource;
 use App\Models\Reziser;
+use App\Models\Serija;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReziserController extends Controller
 {
@@ -37,7 +39,28 @@ class ReziserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'ime' => 'required|string|max:255',
+            'prezime' => 'required|string|max:100',
+            'jmbg' => 'required',
+            'drzava' => 'required',
+           
+            
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+        $reziser = Reziser::create([
+            'ime' => $request->ime,
+            'prezime' => $request->prezime,
+            'jmbg' => $request->jmbg,
+            'drzava' => $request->drzava,
+            
+           
+        ]);
+
+        return response()->json(['Reziser is created successfully.', new ReziserResource($reziser)]);
     }
 
     /**
@@ -71,7 +94,25 @@ class ReziserController extends Controller
      */
     public function update(Request $request, Reziser $reziser)
     {
-        //
+        $validator = Validator::make($request->all(), [
+             'ime' => 'required|string|max:255',
+            'prezime' => 'required|string|max:100',
+            'jmbg' => 'required',
+            'drzava' => 'required',
+        
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+        $reziser->ime = $request->ime;
+        $reziser->prezime = $request->prezime;
+        $reziser->jmbg = $request->jmbg;
+        $reziser->drzava = $request->drzava;
+
+        $reziser->save();
+
+        return response()->json(['Reziser is updated successfully.', new ReziserResource($reziser)]);
     }
 
     /**

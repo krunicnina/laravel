@@ -11,8 +11,9 @@ class Reziser extends Model
     protected $fillable = [
         'ime',
         'prezime',
+        'jmbg',
         'drzava',
-        'jmbg'
+        
        
     ];
 
