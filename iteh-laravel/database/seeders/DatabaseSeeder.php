@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder
         // Reziser::truncate();
         // Zanr::truncate();
         $rseeder = new ReziserSeeder();
-        $sseeder = new SerijaSeeder();
         $zseeder = new ZanrSeeder();
+        $sseeder = new SerijaSeeder();
+
 
         $rseeder->run();
-        $sseeder->run();
         $zseeder->run();
+        $sseeder->run();
     }
 }

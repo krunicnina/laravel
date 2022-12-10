@@ -15,7 +15,7 @@ class CreateZanroviTable extends Migration
     {
         Schema::create('zanrs', function (Blueprint $table) {
             $table->id();
-            $table->string('naziv_zanra');
+            $table->string('naziv_zanra')->unique();
             $table->timestamps();
         });
     }

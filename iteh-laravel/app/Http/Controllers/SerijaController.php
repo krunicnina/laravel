@@ -148,7 +148,7 @@ class SerijaController extends Controller
         $serija->zanr_id=$request->zanr_id;
         $serija->reziser_id=$request->reziser_id;
         $serija->save();
-        return response()->json(['Režiser je uspešno izmenjen.', new SerijaResource($serija)]);
+        return response()->json(['Serija je uspešno izmenjena.', new SerijaResource($serija)]);
 
         // $result= $serija->save();
 

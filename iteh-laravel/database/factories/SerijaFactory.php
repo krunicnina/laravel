@@ -21,7 +21,7 @@ class SerijaFactory extends Factory
             'premijera' => $this->faker->year(),
             'reziser_id' => Reziser::factory(),
             //  'user_id' => User::factory(),
-            'zanr_id' => Zanr::factory()
+             'zanr_id' => $this->faker->numberBetween(1,6)
         ];
     }
 }
