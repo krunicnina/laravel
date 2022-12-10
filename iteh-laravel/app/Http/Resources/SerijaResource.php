@@ -21,14 +21,7 @@ class SerijaResource extends JsonResource
             'premijera' => $this -> resource->premijera,
             'reziser_id'=> new ReziserResource($this -> resource->reziser),
              'zanr_id'=>new ZanrResource($this -> resource->zanr),
-             'user_id'=>new UserResource($this -> resource->user)
-  
 
-
-
-            
-             
-     
           ];
     }
 }

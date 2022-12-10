@@ -20,7 +20,6 @@ class CreateSerijeTable extends Migration
             $table->integer('premijera');
             $table->foreignId('reziser_id')->constrained('rezisers');
             $table->foreignId('zanr_id')->constrained('zanrs');
-            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

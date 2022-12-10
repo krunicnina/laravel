@@ -60,7 +60,7 @@ class ReziserController extends Controller
            
         ]);
 
-        return response()->json(['Reziser is created successfully.', new ReziserResource($reziser)]);
+        return response()->json(['Režiser je uspešno kreiran.', new ReziserResource($reziser)]);
     }
 
     /**
@@ -112,7 +112,7 @@ class ReziserController extends Controller
 
         $reziser->save();
 
-        return response()->json(['Reziser is updated successfully.', new ReziserResource($reziser)]);
+        return response()->json(['Režiser je uspešno izmenjen.', new ReziserResource($reziser)]);
     }
 
     /**
@@ -124,6 +124,6 @@ class ReziserController extends Controller
     public function destroy(Reziser $reziser)
     {
         $reziser->delete();
-        return response()->json('Obrisan je željeni reziser!');
+        return response()->json('Obrisan je željeni režiser!');
     }
 }

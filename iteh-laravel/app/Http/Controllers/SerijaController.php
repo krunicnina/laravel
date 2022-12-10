@@ -19,10 +19,10 @@ class SerijaController extends Controller
      */
     public function index()
     {
-        $serijas = Serija::all();
+        $serije = Serija::all();
     
-        // return new SerijaCollection($serijas);
-        return SerijaResource::collection($serijas);
+       
+        return SerijaResource::collection($serije);
     }
 
     /**
@@ -32,48 +32,37 @@ class SerijaController extends Controller
      */
     public function create()
     {
-        //
+        //x
     }
     public function getByReziser($reziser_id){
-        $serijas=Serija::get()->where('reziser_id',$reziser_id);
+        $serije=Serija::get()->where('reziser_id',$reziser_id);
 
-        if(count($serijas)==0){
-            return response()->json('Dati reziser ne postoji u bazi!');
+        if(count($serije)==0){
+            return response()->json('Dati režiser nije autor nijedne serije u bazi!');
         }
 
-        $my_serijas=array();
-        foreach($serijas as $serija){
-            array_push($my_serijas,new SerijaResource($serija));
+        $sve_serije=array();
+        foreach($serije as $serija){
+            array_push($sve_serije,new SerijaResource($serija));
         }
 
-        return $my_serijas;
+        return $sve_serije;
     }
-    public function serijas(Request $request){
-        $serijas=Serija::get()->where('user_id',Auth::user()->id);
-        if(count($serijas)==0){
-            return 'niste sacuvali seriju!';
-        }
-        $my_serijas=array();
-        foreach($serijas as $serija){
-            array_push($my_serijas,new SerijaResource($serija));
-        }
-
-        return $my_serijas;
-    }
+  
 
     public function getByZanr($zanr_id){
-    $serijas=Serija::get()->where('zanr_id',$zanr_id);
+    $serije=Serija::get()->where('zanr_id',$zanr_id);
 
-        if(count($serijas)==0){
-            return response()->json('Zanr sa datim ID-jem ne postoji');
+        if(count($serije)==0){
+            return response()->json('Žanr sa datim ID-jem ne postoji');
         }
 
-        $my_serijas=array();
-        foreach($serijas as $serija){
-            array_push($my_serijas,new SerijaResource($serija));
+        $sve_serije=array();
+        foreach($serije as $serija){
+            array_push($sve_serije,new SerijaResource($serija));
         }
 
-        return $my_serijas;
+        return $sve_serije;
     }
 
     /**
@@ -84,9 +73,29 @@ class SerijaController extends Controller
      */
     public function store(Request $request)
     {
-        $serijas = Serija::create($request->all());
-        
-        return new SerijaResource($serijas);
+       
+        $validator = Validator::make($request->all(), [
+            'naslov' => 'required|string|max:255',
+            'premijera' => 'required',
+            'reziser_id' => 'required',
+            'zanr_id' => 'required',  
+            
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+        $serija = Serija::create([
+            'naslov' => $request->naslov,
+            'premijera' => $request->premijera,
+            'reziser_id' => $request->reziser_id,
+            'zanr_id' => $request->zanr_id,
+           
+            
+           
+        ]);
+
+        return response()->json(['Serija je uspešno kreirana.', new SerijaResource($serija)]);
     }
 
     /**
@@ -97,7 +106,7 @@ class SerijaController extends Controller
      */
     public function show(Serija $serija)
     {
-        //
+        return new SerijaResource($serija);
     }
 
     /**
@@ -108,7 +117,7 @@ class SerijaController extends Controller
      */
     public function edit(Serija $serija)
     {
-        //
+        // x
     }
 
     /**
@@ -120,35 +129,36 @@ class SerijaController extends Controller
      */
     public function update(Request $request, Serija $serija)
     {
-        // $validator=Validator::make($request->all(),[
-        //     'naslov'=>'required|String|max:255',
-        //     'premijera'=>'required|Integer|max:2023',
-        //     'reziser_id'=>'required',
-        //     'zanr_id'=>'required'
+        $validator=Validator::make($request->all(),[
+            'naslov'=>'required|String|max:255',
+            'premijera'=>'required|Integer|max:2023',
+            'reziser_id'=>'required',
+            'zanr_id'=>'required',
+            
 
 
-        // ]);
-        // if($validator->fails()){
-        //     return response()->json($validator->errors());
-        // }
-        // $serija=new serija;
-        // $serija->naslov=$request->naslov;
-        // $serija->produkcija=$request->produkcija;
-        // $serija->premijera=$request->premijera;
-        // $serija->user_id=Auth::user()->id;
-        // $serija->zanr_id=$request->zanr_id;
-        // $serija->reziser_id=$request->reziser_id;
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+       
+        $serija->naslov=$request->naslov;
+        $serija->premijera=$request->premijera;
+        
+        $serija->zanr_id=$request->zanr_id;
+        $serija->reziser_id=$request->reziser_id;
+        $serija->save();
+        return response()->json(['Režiser je uspešno izmenjen.', new SerijaResource($serija)]);
 
-
-        // $result=$serija->update();
+        // $result= $serija->save();
 
         // if($result==false){
         //     return response()->json('Javio se problem');
         // }
-        // return response()->json(['Uspesno izmenjena serija',new SerijaResource($serija)]);
-        $serija->update($request->all());
+        // return response()->json(['Uspešno izmenjena serija',new SerijaResource($serija)]);
+        // $serija->update($request->all());
         
-        return new SerijaResource($serija);
+        // return new SerijaResource($serija);
     }
 
     /**

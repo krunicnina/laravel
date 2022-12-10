@@ -12,8 +12,8 @@ class Serija extends Model
         'naslov',
         'premijera',
         'reziser_id',
-        'zanr_id',
-         'user_id'
+     'zanr_id',
+  
     ];
 
     public function reziser(){

@@ -20,7 +20,7 @@ class SerijaFactory extends Factory
             'naslov' => $this->faker->firstName(),
             'premijera' => $this->faker->year(),
             'reziser_id' => Reziser::factory(),
-             'user_id' => User::factory(),
+            //  'user_id' => User::factory(),
             'zanr_id' => Zanr::factory()
         ];
     }
