@@ -17,7 +17,7 @@ class SerijaFactory extends Factory
     public function definition()
     {
         return [
-            'naslov' => $this->faker->firstName(),
+            'naslov' => $this->faker->word(),
             'premijera' => $this->faker->year(),
             'reziser_id' => Reziser::factory(),
             //  'user_id' => User::factory(),

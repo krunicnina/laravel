@@ -17,27 +17,27 @@ class ZanrSeeder extends Seeder
   public function run()
   {
     $zanr1=\App\Models\Zanr::create([
-        'naziv_zanra' => "drama"
-    ]);
-
-    $zanr2=\App\Models\Zanr::create([
-        'naziv_zanra' => "triler"
-    ]);
-
-    $zanr3=\App\Models\Zanr::create([
-        'naziv_zanra' => "horor"
-    ]);
-
-    $zanr4=\App\Models\Zanr::create([
-        'naziv_zanra' => "naucna fantastika"
-    ]);
-
-    $zanr5=\App\Models\Zanr::create([
         'naziv_zanra' => "komedija"
     ]);
 
+    $zanr2=\App\Models\Zanr::create([
+        'naziv_zanra' => "horor"
+    ]);
+
+    $zanr3=\App\Models\Zanr::create([
+        'naziv_zanra' => "triler"
+    ]);
+
+    $zanr4=\App\Models\Zanr::create([
+        'naziv_zanra' => "akcija"
+    ]);
+
+    $zanr5=\App\Models\Zanr::create([
+        'naziv_zanra' => "krimi"
+    ]);
+
     $zanr6=\App\Models\Zanr::create([
-        'naziv_zanra' => "animirani"
+        'naziv_zanra' => "misterija"
     ]);
   }
 }
