@@ -25,7 +25,7 @@ Route::post('login', [AuthController::class, 'login']);
  Route::get('serijas/zanr/{id}',[SerijaController::class,'getByZanr']);
  Route::get('serijas/',[SerijaController::class,'index']);
  Route::resource('zanr', ZanrController::class)->only('index');
-
+ Route::resource('reziser', ReziserController::class)->only(['index','show']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
