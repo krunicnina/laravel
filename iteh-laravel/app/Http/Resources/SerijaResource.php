@@ -19,8 +19,8 @@ class SerijaResource extends JsonResource
             
             'naslov'=> $this -> resource->naslov,
             'premijera' => $this -> resource->premijera,
-            'reziser_id'=> new ReziserResource($this -> resource->reziser),
-             'zanr_id'=>new ZanrResource($this -> resource->zanr),
+            'reziser'=> new ReziserResource($this -> resource->reziser),
+             'zanr'=>new ZanrResource($this -> resource->zanr),
 
           ];
     }
