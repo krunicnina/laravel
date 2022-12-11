@@ -28,7 +28,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::resource('reziser', ReziserController::class)->only(['update', 'store', 'destroy']);
-     Route::resource('zanr', ZanrController::class)->only('destroy');
+     Route::resource('zanr', ZanrController::class);
     Route::apiResource('serijas',SerijaController::class);
      Route::post('logout', [AuthController::class, 'logout']);
    
