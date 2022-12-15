@@ -52,7 +52,7 @@ class ZanrController extends Controller
            
         ]);
 
-        return response()->json(['Novi zanr ubačen u bazu!.', new ZanrResource($zanr)]);
+        return response()->json(['Novi žanr je ubačen u bazu!.', new ZanrResource($zanr)]);
     }
 
     /**
@@ -98,6 +98,6 @@ class ZanrController extends Controller
     public function destroy(Zanr $zanr)
     {
         $zanr->delete();
-        return response()->json('Obrisan je željeni zanr!');
+        return response()->json('Obrisan je željeni žanr!');
     }
 }

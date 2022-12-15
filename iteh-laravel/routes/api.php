@@ -23,14 +23,14 @@ Route::post('login', [AuthController::class, 'login']);
 // Route::get('/users/{id}', [UserController::class, 'show'])->name('show');
  Route::get('serijas/reziser/{id}',[SerijaController::class,'getByReziser']);
  Route::get('serijas/zanr/{id}',[SerijaController::class,'getByZanr']);
- Route::get('serijas/',[SerijaController::class,'index']);
+ Route::get('serijas',[SerijaController::class,'index']);
  Route::resource('zanr', ZanrController::class)->only('index');
  Route::resource('reziser', ReziserController::class)->only(['index','show']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::resource('reziser', ReziserController::class)->only(['update', 'store', 'destroy']);
-     Route::resource('zanr', ZanrController::class)->only('destroy');
+     Route::resource('zanr', ZanrController::class)->only(['destroy','store']);
     Route::apiResource('serijas',SerijaController::class)->only(['update', 'store', 'destroy']);
      Route::post('logout', [AuthController::class, 'logout']);
    
